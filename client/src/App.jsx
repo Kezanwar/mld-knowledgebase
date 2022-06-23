@@ -1,25 +1,19 @@
 import './App.scss'
-import WPAPI from 'wpapi'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header/Header'
 import axios from 'axios'
 import Sidebar from './components/Sidebar/Sidebar'
 import Main from './components/Main/Main'
-const wp = new WPAPI({
-  endpoint: process.env.REACT_APP_ENDPOINT,
-})
 
 function App() {
+  const [posts, setPosts] = useState(null)
+
   useEffect(() => {
-    wp.posts()
-      .then((res) => console.log('success', res))
-      .catch((err) => console.log('error', err))
-    // axios
-    //   .get(process.env.REACT_APP_POST_ENDPOINT)
-    //   .then((res) => console.log('success', res.data))
-    //   .catch((err) => console.log(err.response))
-    //   .catch((err) => console.log('error', err))
-  }, [])
+    axios
+      .get(process.env.REACT_APP_GET_POSTS)
+      .then((res) => setPosts(res.data))
+      .catch((err) => console.log(err.response))
+  }, [posts])
 
   return (
     <div className="App">

@@ -2,12 +2,13 @@ const express = require('express')
 require('dotenv').config()
 const PORT = process.env.PORT
 const axios = require('axios')
+const cors = require('cors')
 
 const app = express()
 
 // init middleware
 // allows us to get data within bodies of req/res
-app.use(express.json({ extended: false }))
+app.use(cors(), express.json({ extended: false }))
 
 app.get('/', (req, res) => res.send('mld knowledgebase api running'))
 
