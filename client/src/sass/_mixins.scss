@@ -1,0 +1,61 @@
+@mixin for-sml-phone {
+  @media (max-width: $breakpoint-phone-sml) {
+    @content;
+  }
+}
+@mixin for-lg-phone {
+  @media (max-width: $breakpoint-phone-lg) {
+    @content;
+  }
+}
+@mixin for-sml-tablet {
+  @media (max-width: $breakpoint-tablet-sml) {
+    @content;
+  }
+}
+@mixin for-lg-tablet {
+  @media (max-width: $breakpoint-tablet-lg) {
+    @content;
+  }
+}
+@mixin for-sml-desktop {
+  @media (max-width: $breakpoint-desktop-sml) {
+    @content;
+  }
+}
+@mixin for-lg-desktop {
+  @media (min-width: $breakpoint-desktop-lg) {
+    @content;
+  }
+}
+
+@mixin if-hover {
+  @media (hover: hover) {
+    /* when hovers supported supported */
+    @content;
+  }
+}
+
+@mixin fadeIn($duration) {
+  animation: fadeIn $duration ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@mixin logo() {
+  letter-spacing: -1px;
+  color: $mld-red;
+  font-weight: 600;
+  font-size: 2rem;
+  border-bottom: 3px solid;
+  width: max-content;
+  cursor: pointer;
+}

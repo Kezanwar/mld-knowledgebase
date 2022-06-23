@@ -1,0 +1,77 @@
+@import './sass/fonts.scss';
+@import './sass/variables.scss';
+@import './sass/mixins.scss';
+
+// RESETS
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html,
+body,
+label,
+input {
+  font-family: $helvetica;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+// INITIALIZATIONS
+
+a {
+  text-decoration: none;
+  &:active {
+    text-decoration: none;
+  }
+}
+
+.App {
+  .mainAndSideWrapper {
+    display: grid;
+    grid-template-columns: 1fr 85%;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+}
+
+@import './components/Header/Header.scss';
+@import './components/Sidebar/Sidebar.scss';
+@import './components/Main/Main.scss';
