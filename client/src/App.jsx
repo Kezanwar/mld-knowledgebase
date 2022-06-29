@@ -9,18 +9,22 @@ function App() {
   const [posts, setPosts] = useState(null)
 
   useEffect(() => {
-    axios
-      .get(process.env.REACT_APP_GET_POSTS)
-      .then((res) => setPosts(res.data))
-      .catch((err) => console.log(err.response))
-  }, [posts])
+    if (!posts) {
+      axios
+        .get(process.env.REACT_APP_GET_POSTS)
+        .then((res) => setPosts(res.data))
+        .catch((err) => console.log(err.response))
+    }
+  }, [])
+
+  console.log(posts)
 
   return (
     <div className="App">
       <Header />
       <section className="mainAndSideWrapper">
         <Sidebar />
-        <Main />
+        <Main posts={posts} />
       </section>
     </div>
   )

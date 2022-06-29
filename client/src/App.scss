@@ -64,7 +64,12 @@ a {
 }
 
 .App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
   .mainAndSideWrapper {
+    flex: 1;
     display: grid;
     grid-template-columns: 1fr 85%;
     // padding: 2rem;
