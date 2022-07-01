@@ -1,0 +1,13 @@
+.Post {
+  .__title {
+    // font-weight: 600;
+    font-size: 2.5rem;
+    color: $mld-red;
+    letter-spacing: -1px;
+  }
+  .__content {
+    p {
+      font-size: 1.4rem;
+    }
+  }
+}

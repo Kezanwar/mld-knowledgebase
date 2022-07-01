@@ -73,9 +73,13 @@ a {
     display: grid;
     grid-template-columns: 1fr 85%;
     // padding: 2rem;
+    @include for-sml-tablet() {
+      display: flex;
+    }
   }
 }
 
 @import './components/Header/Header.scss';
 @import './components/Sidebar/Sidebar.scss';
 @import './components/Main/Main.scss';
+@import './components/Post/Post.scss';

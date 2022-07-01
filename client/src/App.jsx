@@ -17,13 +17,20 @@ function App() {
     }
   }, [])
 
+  const [mobNav, setMobNav] = useState(false)
+
+  const toggleMobNav = () => {
+    setMobNav((prev) => !prev)
+  }
+
   console.log(posts)
 
+  if (!posts) return <div>loading</div>
   return (
     <div className="App">
-      <Header />
+      <Header toggleMobNav={toggleMobNav} />
       <section className="mainAndSideWrapper">
-        <Sidebar />
+        <Sidebar mobNav={mobNav} />
         <Main posts={posts} />
       </section>
     </div>
