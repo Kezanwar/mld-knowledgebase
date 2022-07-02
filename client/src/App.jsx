@@ -40,7 +40,9 @@ function App() {
         return {
           title: category.name,
           description: category.description,
-          posts: posts.filter((post) => post.categories[0] === category.id),
+          posts: posts
+            .filter((post) => post.categories[0] === category.id)
+            .reverse(),
         }
     })
     .filter((el) => el !== null)
