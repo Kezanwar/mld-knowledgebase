@@ -53,7 +53,10 @@ function App() {
     <div className="App">
       <Header toggleMobNav={toggleMobNav} />
       <section className="mainAndSideWrapper">
-        <Sidebar mobNav={mobNav} />
+        <Sidebar
+          filteredPostsByCategories={filteredPostsByCategories}
+          mobNav={mobNav}
+        />
         <Main filteredPostsByCategories={filteredPostsByCategories} />
       </section>
     </div>
