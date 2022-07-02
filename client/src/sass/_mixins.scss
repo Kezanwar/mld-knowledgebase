@@ -52,10 +52,10 @@
 
 @mixin logo() {
   position: relative;
-  letter-spacing: -1px;
+  letter-spacing: -2px;
   color: $mld-red;
   font-weight: 500;
-  font-size: 2.25rem;
+  font-size: 2.5rem;
   // border-bottom: 4px solid;
   width: max-content;
   cursor: pointer;
@@ -65,7 +65,7 @@
     width: 100%;
     height: 2px;
     position: absolute;
-    bottom: 0.1rem;
+    bottom: 0.4rem;
     left: 0;
     background-color: $mld-red;
   }

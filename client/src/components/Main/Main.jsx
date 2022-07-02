@@ -1,10 +1,14 @@
 import React from 'react'
-import Post from '../Post/Post'
+import Category from '../Category/Category'
 
-export default function Main({ posts }) {
+export default function Main(props) {
+  const { filteredPostsByCategories } = props
   return (
     <main id="main" className="Main">
-      {posts && posts.map((post) => <Post post={post} />)}
+      {filteredPostsByCategories &&
+        filteredPostsByCategories.map((category) => {
+          return <Category category={category} />
+        })}
     </main>
   )
 }

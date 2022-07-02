@@ -1,13 +1,45 @@
 .Post {
+  margin-bottom: 3rem;
   .__title {
     // font-weight: 600;
-    font-size: 2.5rem;
+    font-weight: 500;
+    font-size: 3rem;
     color: $mld-red;
     letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+
+    @include for-sml-tablet() {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
   }
   .__content {
     p {
+      font-weight: 400;
       font-size: 1.4rem;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
     }
+
+    span {
+      font-weight: 600;
+    }
+  }
+}
+
+.Divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgb(209, 209, 209);
+  margin-bottom: 3rem;
+  border-radius: 10px;
+
+  &:last-of-type {
+    display: none;
   }
 }
