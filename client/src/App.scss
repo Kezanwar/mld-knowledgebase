@@ -67,15 +67,22 @@ a {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  max-height: 100vh;
   overflow: hidden;
   .mainAndSideWrapper {
     flex: 1;
     display: grid;
     grid-template-columns: 1fr 85%;
+    overflow-y: scroll;
     // padding: 2rem;
+    @include for-sml-tablet() {
+      display: flex;
+    }
   }
 }
 
 @import './components/Header/Header.scss';
 @import './components/Sidebar/Sidebar.scss';
 @import './components/Main/Main.scss';
+@import './components/Post/Post.scss';
+@import './components/Category/Category.scss';

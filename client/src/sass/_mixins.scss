@@ -52,9 +52,9 @@
 
 @mixin logo() {
   position: relative;
-  letter-spacing: -1px;
+  letter-spacing: -2px;
   color: $mld-red;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 2.5rem;
   // border-bottom: 4px solid;
   width: max-content;
@@ -63,9 +63,9 @@
   &::after {
     content: '';
     width: 100%;
-    height: 4px;
+    height: 2px;
     position: absolute;
-    bottom: 0.2rem;
+    bottom: 0.4rem;
     left: 0;
     background-color: $mld-red;
   }

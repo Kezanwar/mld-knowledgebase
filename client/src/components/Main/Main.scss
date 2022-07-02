@@ -1,17 +1,12 @@
 .Main {
   padding: 1rem 2rem;
-  font-weight: 500;
-  font-size: 2rem;
   overflow-y: scroll;
   height: 100%;
-  max-height: 100%;
+  min-height: max-content;
+
   scroll-behavior: smooth;
 
-  div {
-    height: 100%;
-  }
-
-  .aaa {
-    background-color: black;
+  @include for-sml-tablet() {
+    padding: 1.5rem;
   }
 }

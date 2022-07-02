@@ -1,20 +1,14 @@
 import React from 'react'
+import Category from '../Category/Category'
 
-export default function Main({ posts }) {
+export default function Main(props) {
+  const { filteredPostsByCategories } = props
   return (
     <main id="main" className="Main">
-      Main
-      <div id="hello"></div>
-      {posts &&
-        posts.map((post) => (
-          <div key={post.id} className="post">
-            <div className="__title">{post.title.rendered}</div>
-            <div
-              className="__content"
-              dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-            />
-          </div>
-        ))}
+      {filteredPostsByCategories &&
+        filteredPostsByCategories.map((category) => {
+          return <Category category={category} />
+        })}
     </main>
   )
 }

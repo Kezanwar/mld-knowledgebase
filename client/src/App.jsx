@@ -6,25 +6,53 @@ import Sidebar from './components/Sidebar/Sidebar'
 import Main from './components/Main/Main'
 
 function App() {
-  const [posts, setPosts] = useState(null)
+  const [wpData, setWpData] = useState(null)
+  const [mobNav, setMobNav] = useState(false)
+
+  const toggleMobNav = () => {
+    setMobNav((prev) => !prev)
+  }
 
   useEffect(() => {
-    if (!posts) {
+    if (!wpData) {
       axios
         .get(process.env.REACT_APP_GET_POSTS)
-        .then((res) => setPosts(res.data))
+        .then((wpposts) => {
+          axios
+            .get(process.env.REACT_APP_GET_CATS)
+            .then((wpcats) =>
+              setWpData({ posts: wpposts.data, categories: wpcats.data })
+            )
+            .catch((err) => console.log(err.response))
+        })
         .catch((err) => console.log(err.response))
     }
-  }, [])
+  }, [wpData])
 
-  console.log(posts)
+  if (!wpData) return <div>loading</div>
+
+  const { posts, categories } = wpData
+
+  const filteredPostsByCategories = categories
+    .map((category) => {
+      if (category.name === 'Uncategorized') return null
+      else
+        return {
+          title: category.name,
+          description: category.description,
+          posts: posts.filter((post) => post.categories[0] === category.id),
+        }
+    })
+    .filter((el) => el !== null)
+
+  console.log(filteredPostsByCategories)
 
   return (
     <div className="App">
-      <Header />
+      <Header toggleMobNav={toggleMobNav} />
       <section className="mainAndSideWrapper">
-        <Sidebar />
-        <Main posts={posts} />
+        <Sidebar mobNav={mobNav} />
+        <Main filteredPostsByCategories={filteredPostsByCategories} />
       </section>
     </div>
   )
