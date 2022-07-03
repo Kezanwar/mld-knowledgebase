@@ -17,5 +17,5 @@ export default function Category({ category }) {
         <PostList posts={posts} />
       </section>
     )
-  }, [category])
+  }, [title, description, posts])
 }
