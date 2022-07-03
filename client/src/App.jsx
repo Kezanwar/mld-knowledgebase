@@ -4,6 +4,7 @@ import Header from './components/Header/Header'
 import axios from 'axios'
 import Sidebar from './components/Sidebar/Sidebar'
 import Main from './components/Main/Main'
+import ContextProvider from './components/ContextProvider'
 
 function App() {
   const [wpData, setWpData] = useState(null)
@@ -31,7 +32,11 @@ function App() {
 
   if (!wpData) return <div>loading</div>
 
-  const { posts, categories } = wpData
+  let { posts, categories } = wpData
+
+  categories = categories.sort(
+    (a, b) => a.acf.category_order - b.acf.category_order
+  )
 
   const filteredPostsByCategories = categories
     .map((category) => {
@@ -47,19 +52,18 @@ function App() {
     })
     .filter((el) => el !== null)
 
-  console.log(filteredPostsByCategories)
+  // console.log(filteredPostsByCategories)
 
   return (
-    <div className="App">
-      <Header toggleMobNav={toggleMobNav} />
-      <section className="mainAndSideWrapper">
-        <Sidebar
-          filteredPostsByCategories={filteredPostsByCategories}
-          mobNav={mobNav}
-        />
-        <Main filteredPostsByCategories={filteredPostsByCategories} />
-      </section>
-    </div>
+    <ContextProvider filteredPostsByCategories={filteredPostsByCategories}>
+      <div className="App">
+        <Header toggleMobNav={toggleMobNav} />
+        <section className="mainAndSideWrapper">
+          <Sidebar mobNav={mobNav} />
+          <Main />
+        </section>
+      </div>
+    </ContextProvider>
   )
 }
 
