@@ -22,10 +22,10 @@ export default function Sidebar(props) {
       {filteredPostsByCategories.map((category) => {
         return (
           <nav className="Nav-block">
-            <h4>{category.title}</h4>
+            <h4 className="nav-title">{category.title}</h4>
             {category.posts.map((post, index) => {
               return (
-                <li ref={scrollRefs[post.slug]}>
+                <li className="nav-item" ref={scrollRefs[post.slug]}>
                   <span>{index + 1}.</span> {post.title.rendered}
                 </li>
               )

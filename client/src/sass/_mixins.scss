@@ -70,3 +70,51 @@
     background-color: $mld-red;
   }
 }
+
+@mixin clearScroll() {
+  &::-webkit-scrollbar {
+    width: 0px;
+    // border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgb(255, 255, 255);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-button {
+    background-color: transparent;
+  }
+}
+
+@mixin scrollBarStyles($width, $color) {
+  &::-webkit-scrollbar {
+    width: $width;
+    // border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgb(246, 246, 246);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    // background-color: rgb(220, 220, 220);
+    background-color: $color;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-button {
+    background-color: transparent;
+  }
+}

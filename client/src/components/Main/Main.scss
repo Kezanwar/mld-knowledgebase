@@ -5,6 +5,7 @@
   min-height: max-content;
 
   scroll-behavior: smooth;
+  @include scrollBarStyles(5px, rgb(175, 175, 175));
 
   @include for-sml-tablet() {
     padding: 1.5rem;

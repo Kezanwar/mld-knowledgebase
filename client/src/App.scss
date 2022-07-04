@@ -70,11 +70,14 @@ a {
   height: 100vh;
   max-height: 100vh;
   overflow: hidden;
+
   .mainAndSideWrapper {
     flex: 1;
     display: grid;
     grid-template-columns: 1fr 85%;
     overflow-y: scroll;
+    @include clearScroll;
+
     // padding: 2rem;
     @include for-sml-tablet() {
       display: flex;
