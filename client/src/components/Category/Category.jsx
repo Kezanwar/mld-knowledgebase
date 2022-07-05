@@ -5,6 +5,7 @@ import Icons from './categoryIcons'
 
 export default function Category({ category }) {
   const { title, description, posts } = category
+
   return useMemo(() => {
     return (
       <section className="Category" id={title}>
