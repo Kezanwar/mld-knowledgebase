@@ -74,7 +74,7 @@ a {
   .mainAndSideWrapper {
     flex: 1;
     display: grid;
-    grid-template-columns: 1fr 85%;
+    grid-template-columns: 1fr 82.5%;
     overflow-y: scroll;
     @include clearScroll;
 
@@ -83,6 +83,14 @@ a {
       display: flex;
     }
   }
+}
+
+.loading-screen {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 @import './components/Header/Header.scss';

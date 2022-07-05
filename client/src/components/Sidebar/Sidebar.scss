@@ -27,11 +27,12 @@
   .Nav-block {
     margin-bottom: 1rem;
     h4.nav-title {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 600;
       color: $mld-red;
       text-transform: lowercase;
       margin-bottom: 0.75rem;
+      cursor: pointer;
     }
 
     li.nav-item {
@@ -40,14 +41,24 @@
       text-transform: lowercase;
       cursor: pointer;
       margin-bottom: 0.75rem;
+      line-height: 2;
 
       span {
         background-color: $d-grey;
         color: white;
-        padding: 0.5rem 0.5rem 0.4rem 0.55rem;
+        padding: 0.5rem 0.6rem 0.4rem 0.6rem;
         border-radius: 50px;
-        font-size: 0.6rem;
-        font-weight: 600;
+        font-size: 0.7rem;
+        font-weight: 800;
+      }
+
+      &.intersecting {
+        color: $mld-red;
+
+        span {
+          background-color: $mld-red;
+          color: white;
+        }
       }
     }
   }

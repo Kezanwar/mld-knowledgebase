@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { ScrollSectionContext, PostAndCats } from '../ContextProvider'
+import NavBlock from './NavBlock'
 
 export default function Sidebar(props) {
   const { mobNav } = props
@@ -8,7 +9,7 @@ export default function Sidebar(props) {
   const scroll = (e) => {
     const targetEl = document.getElementById(e.target.dataset.target)
     const topPos = targetEl.offsetTop
-    document.getElementById('main').scrollTop = topPos - 100
+    document.getElementById('main').scrollTop = topPos - 120
   }
 
   // console.log(scrollRefs)
@@ -21,16 +22,11 @@ export default function Sidebar(props) {
       </p> */}
       {filteredPostsByCategories.map((category) => {
         return (
-          <nav className="Nav-block">
-            <h4 className="nav-title">{category.title}</h4>
-            {category.posts.map((post, index) => {
-              return (
-                <li className="nav-item" ref={scrollRefs[post.slug]}>
-                  <span>{index + 1}.</span> {post.title.rendered}
-                </li>
-              )
-            })}
-          </nav>
+          <NavBlock
+            category={category}
+            scroll={scroll}
+            scrollRefs={scrollRefs}
+          />
         )
       })}
     </aside>

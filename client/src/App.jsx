@@ -30,7 +30,12 @@ function App() {
     }
   }, [wpData])
 
-  if (!wpData) return <div>loading</div>
+  if (!wpData)
+    return (
+      <div className="loading-screen">
+        welcome to My Local Deli Knowledgebase
+      </div>
+    )
 
   let { posts, categories } = wpData
 
