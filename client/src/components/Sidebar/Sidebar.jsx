@@ -3,13 +3,17 @@ import { ScrollSectionContext, PostAndCats } from '../ContextProvider'
 import NavBlock from './NavBlock'
 
 export default function Sidebar(props) {
-  const { mobNav } = props
+  const { mobNav, toggleMobNav } = props
   const scrollRefs = useContext(ScrollSectionContext)
   const filteredPostsByCategories = useContext(PostAndCats)
+
   const scroll = (e) => {
     const targetEl = document.getElementById(e.target.dataset.target)
     const topPos = targetEl.offsetTop
     document.getElementById('main').scrollTop = topPos - 120
+    if (window.innerWidth <= 768) {
+      toggleMobNav()
+    }
   }
 
   // console.log(scrollRefs)

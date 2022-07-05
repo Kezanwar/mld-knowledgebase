@@ -6,14 +6,15 @@ import { ScrollSectionContext } from '../ContextProvider'
 export default function Post({ post, index }) {
   const scrollRefs = useContext(ScrollSectionContext)
   const postRef = useRef(null)
-  const postLength = post.content.rendered.length
+
   useEffect(() => {
     if (postRef && postRef.current) {
       const observerOptions = {
         root: null,
         rootMargin: '400px',
-        threshold: postLength > 700 ? 0.5 : 1,
+        threshold: postRef.current.offsetHeight > 450 ? 0.5 : 1,
       }
+
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {

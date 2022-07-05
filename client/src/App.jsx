@@ -14,17 +14,30 @@ function App() {
     setMobNav((prev) => !prev)
   }
 
+  // useEffect(() => {
+  //   if (!wpData) {
+  //     axios
+  //       .get(process.env.REACT_APP_GET_POSTS)
+  //       .then((wpposts) => {
+  //         console.log(wpposts.data)
+  //         axios
+
+  //           .get(process.env.REACT_APP_GET_CATS)
+  //           .then((wpcats) =>
+  //             setWpData({ posts: wpposts.data, categories: wpcats.data })
+  //           )
+  //           .catch((err) => console.log(err.response))
+  //       })
+  //       .catch((err) => console.log(err.response))
+  //   }
+  // }, [wpData])
+
   useEffect(() => {
     if (!wpData) {
       axios
         .get(process.env.REACT_APP_GET_POSTS)
-        .then((wpposts) => {
-          axios
-            .get(process.env.REACT_APP_GET_CATS)
-            .then((wpcats) =>
-              setWpData({ posts: wpposts.data, categories: wpcats.data })
-            )
-            .catch((err) => console.log(err.response))
+        .then((res) => {
+          setWpData(res.data)
         })
         .catch((err) => console.log(err.response))
     }
@@ -33,38 +46,40 @@ function App() {
   if (!wpData)
     return (
       <div className="loading-screen">
-        welcome to My Local Deli Knowledgebase
+        welcome to my local deli knowledgebase
       </div>
     )
 
-  let { posts, categories } = wpData
+  // let { posts, categories } = wpData
 
-  categories = categories.sort(
-    (a, b) => a.acf.category_order - b.acf.category_order
-  )
+  // categories = categories.sort(
+  //   (a, b) => a.acf.category_order - b.acf.category_order
+  // )
 
-  const filteredPostsByCategories = categories
-    .map((category) => {
-      if (category.name === 'Uncategorized') return null
-      else
-        return {
-          title: category.name,
-          description: category.description,
-          posts: posts
-            .filter((post) => post.categories[0] === category.id)
-            .reverse(),
-        }
-    })
-    .filter((el) => el !== null)
+  // const filteredPostsByCategories = categories
+  //   .map((category) => {
+  //     if (category.name === 'Uncategorized') return null
+  //     else
+  //       return {
+  //         title: category.name,
+  //         description: category.description,
+  //         posts: posts
+  //           .filter((post) => post.categories[0] === category.id)
+  //           .sort((a, b) => a.acf.post_order - b.acf.post_order),
+  //       }
+  //   })
+  //   .filter((el) => el !== null)
+
+  // console.log(posts)
 
   // console.log(filteredPostsByCategories)
 
   return (
-    <ContextProvider filteredPostsByCategories={filteredPostsByCategories}>
+    <ContextProvider filteredPostsByCategories={wpData}>
       <div className="App">
         <Header toggleMobNav={toggleMobNav} />
         <section className="mainAndSideWrapper">
-          <Sidebar mobNav={mobNav} />
+          <Sidebar toggleMobNav={toggleMobNav} mobNav={mobNav} />
           <Main />
         </section>
       </div>
