@@ -16,18 +16,37 @@ app.get('/', (req, res) => res.send('mld knowledgebase api running'))
 
 // app.use('/api/posts', require('./routes/api/posts'))
 
-app.get('/api/posts', (req, res) => {
-  axios
-    .get(process.env.GET_POSTS_URL)
-    .then((response) => res.send(response.data))
-    .catch((err) => console.log('hello', err))
-})
+// app.get('/api/posts', (req, res) => {
+//   axios
+//     .get(`${process.env.GET_POSTS_URL}?per_page=100`)
+//     .then((response) => res.send(response.data))
+//     .catch((err) => console.log('hello', err))
+// })
 
-app.get('/api/cats', (req, res) => {
-  axios
-    .get(process.env.GET_CATS_URL)
-    .then((response) => res.send(response.data))
-    .catch((err) => console.log('hello', err))
+app.get('/api/posts', async (req, res) => {
+  try {
+    const wpPosts = await axios.get(`${process.env.GET_POSTS_URL}?per_page=100`)
+    const wpCats = await axios.get(process.env.GET_CATS_URL)
+    let posts = wpPosts.data
+    let categories = wpCats.data
+    categories = categories.sort((a, b) => a.acf.category_order - b.acf.category_order)
+    const filteredPostsByCategories = categories
+      .map((category) => {
+        if (category.name === 'Uncategorized') return null
+        else
+          return {
+            title: category.name,
+            description: category.description,
+            posts: posts
+              .filter((post) => post.categories[0] === category.id)
+              .sort((a, b) => a.acf.post_order - b.acf.post_order),
+          }
+      })
+      .filter((el) => el !== null)
+    res.send(filteredPostsByCategories)
+  } catch (error) {
+    res.status(500).send(error.reponse.data)
+  }
 })
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
