@@ -12,17 +12,6 @@ app.use(cors(), express.json({ extended: false }))
 
 app.get('/', (req, res) => res.send('mld knowledgebase api running'))
 
-// // define routes
-
-// app.use('/api/posts', require('./routes/api/posts'))
-
-// app.get('/api/posts', (req, res) => {
-//   axios
-//     .get(`${process.env.GET_POSTS_URL}?per_page=100`)
-//     .then((response) => res.send(response.data))
-//     .catch((err) => console.log('hello', err))
-// })
-
 app.get('/api/posts', async (req, res) => {
   try {
     const wpPosts = await axios.get(`${process.env.GET_POSTS_URL}?per_page=100`)
@@ -45,7 +34,7 @@ app.get('/api/posts', async (req, res) => {
       .filter((el) => el !== null)
     res.send(filteredPostsByCategories)
   } catch (error) {
-    res.status(500).send(error.reponse.data)
+    res.status(500).send(error?.reponse?.data)
   }
 })
 
