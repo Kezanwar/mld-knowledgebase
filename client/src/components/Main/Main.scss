@@ -10,4 +10,8 @@
   @include for-sml-tablet() {
     padding: 1.5rem;
   }
+
+  .intro {
+    min-height: 80vh;
+  }
 }

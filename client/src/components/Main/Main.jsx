@@ -7,6 +7,7 @@ export default function Main(props) {
 
   return (
     <main id="main" className="Main">
+      <div className="intro">Welcome to My Local Deli</div>
       {filteredPostsByCategories &&
         filteredPostsByCategories.map((category) => {
           return <Category key={category.title} category={category} />
