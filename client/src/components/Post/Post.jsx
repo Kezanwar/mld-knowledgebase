@@ -18,7 +18,7 @@ export default function Post({ post, index }) {
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log(entry)
+            // console.log(entry)
             scrollRefs[post.slug].current.classList.add('intersecting')
           }
           if (!entry.isIntersecting) {
